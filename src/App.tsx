@@ -8,7 +8,9 @@ export function App() {
 
   return (
     <>
-      <Heading />
+      <Heading attr={123} attr2='Item'>
+        Olá, mundo!
+      </Heading>
       <h2>Teste</h2>
     </>
   );
