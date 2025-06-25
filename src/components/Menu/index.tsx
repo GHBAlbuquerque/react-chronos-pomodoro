@@ -5,7 +5,11 @@ import { useEffect, useState } from 'react';
 type AvailableModes = 'dark' | 'light';
 
 export function Menu() {
-  const [mode, changeMode] = useState<AvailableModes>('dark');
+  const [mode, changeMode] = useState<AvailableModes>(() => {
+    const storageMode =
+      (localStorage.getItem('mode') as AvailableModes) || 'dark';
+    return storageMode;
+  });
 
   function handleModeChange(
     event: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
@@ -20,12 +24,13 @@ export function Menu() {
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', mode);
+    localStorage.setItem('mode', mode);
 
-    return () => {
-      console.log(
-        'this is only executed after useEffcect has been called more than once',
-      );
-    };
+    // return () => {
+    //   console.log(
+    //   'this is only executed after useEffect has been called more than once, it can be used to clean up ',
+    //   );
+    // };
   }, [mode]);
 
   return (
