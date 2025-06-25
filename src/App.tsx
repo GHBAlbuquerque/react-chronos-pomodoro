@@ -3,12 +3,13 @@ import { Heading } from './components/Heading';
 
 import './styles/theme.css';
 import './styles/global.css';
+import { Logo } from './components/Logo';
 
 export function App() {
   return (
     <>
       <Container>
-        <Heading>LOGO</Heading>
+        <Logo />
       </Container>
       <Container>MENU</Container>
       <Container>FORM</Container>
