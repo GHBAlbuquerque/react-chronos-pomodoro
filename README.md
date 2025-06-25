@@ -1,11 +1,11 @@
-# Chronos Pomodoro 🕒
+# ⏳ Chronos Pomodoro
 
 Chronos Pomodoro is a minimalist Pomodoro timer application built with
 **React**, **TypeScript**, and **Vite**.  
 It helps you manage your focus sessions and breaks using the Pomodoro Technique,
 with a clean and modern interface.
 
-## Features
+## ✨ Features
 
 - Start, pause, and reset Pomodoro cycles
 - Track your tasks and completed cycles
@@ -13,7 +13,7 @@ with a clean and modern interface.
 - Built with modular React components
 - Styled with CSS modules and custom themes
 
-## Tech Stack
+## 🧰 Tech Stack
 
 - [React](https://react.dev/)
 - [TypeScript](https://www.typescriptlang.org/)
@@ -21,7 +21,7 @@ with a clean and modern interface.
 - [Lucide React Icons](https://lucide.dev/)
 - [ESLint](https://eslint.org/) for code quality
 
-## Getting Started
+## 🚀 Getting Started
 
 1. **Install dependencies:**
    ```sh
@@ -39,6 +39,6 @@ Feel free to customize and expand this project to fit your productivity needs!
 
 ---
 
-Done in 2025
+📅 Done in 2025
 
 [@GHBAlbuquerque](https://github.com/GHBAlbuquerque)
