@@ -1,4 +1,4 @@
-# Chronos Pomodoro
+# Chronos Pomodoro 🕒
 
 Chronos Pomodoro is a minimalist Pomodoro timer application built with
 **React**, **TypeScript**, and **Vite**.  
