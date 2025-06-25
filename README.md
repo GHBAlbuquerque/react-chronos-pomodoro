@@ -27,3 +27,18 @@ with a clean and modern interface.
    ```sh
    npm install
    ```
+2. **Run the development server:**
+
+   ```sh
+   npm run dev
+   ```
+
+3. Open http://localhost:5173 to view the app.
+
+Feel free to customize and expand this project to fit your productivity needs!
+
+---
+
+Done in 2025
+
+[@GHBAlbuquerque](https://github.com/GHBAlbuquerque)
