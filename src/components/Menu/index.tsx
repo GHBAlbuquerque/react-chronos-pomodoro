@@ -1,6 +1,6 @@
 import { HistoryIcon, HouseIcon, SettingsIcon, SunIcon } from 'lucide-react';
 import styles from './styles.module.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 type AvailableModes = 'dark' | 'light';
 
@@ -11,8 +11,22 @@ export function Menu() {
     event: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
   ) {
     event.preventDefault();
-    console.log(event);
+
+    changeMode(prevMode => {
+      const nextMode = prevMode === 'dark' ? 'light' : 'dark';
+      return nextMode;
+    });
   }
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', mode);
+
+    return () => {
+      console.log(
+        'this is only executed after useEffcect has been called more than once',
+      );
+    };
+  }, [mode]);
 
   return (
     <div className={styles.menu}>
