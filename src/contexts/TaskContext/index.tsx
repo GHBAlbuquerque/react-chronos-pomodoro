@@ -1,4 +1,4 @@
-import { createContext } from 'react';
+import { createContext, useContext } from 'react';
 import type { TaskStateModel } from '../../models/TaskStateModel';
 
 // Initial value for TaskState
@@ -44,4 +44,10 @@ export function TaskContextProvider({ children }: TaskContentProviderProps) {
       {children}
     </TaskContext.Provider>
   );
+}
+
+// Personalized Hook
+
+export function useTaskContext() {
+  return useContext(TaskContext);
 }

@@ -1,9 +1,8 @@
-import { useContext } from 'react';
 import styles from './styles.module.css';
-import { TaskContext } from '../../contexts/TaskContext';
+import { useTaskContext } from '../../contexts/TaskContext';
 
 export function Countdown() {
-  const taskContext = useContext(TaskContext);
+  const taskContext = useTaskContext();
   console.log(taskContext);
   return <div className={styles.countdown}>00:00</div>;
 }
