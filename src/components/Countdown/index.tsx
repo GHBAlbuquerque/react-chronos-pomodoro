@@ -4,6 +4,6 @@ import { TaskContext } from '../../contexts/TaskContext';
 
 export function Countdown() {
   const taskContext = useContext(TaskContext);
-  console.log(taskContext.key);
+  console.log(taskContext);
   return <div className={styles.countdown}>00:00</div>;
 }
