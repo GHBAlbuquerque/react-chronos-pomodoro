@@ -1,4 +1,10 @@
-import { HistoryIcon, HouseIcon, SettingsIcon, SunIcon } from 'lucide-react';
+import {
+  HistoryIcon,
+  HouseIcon,
+  MoonIcon,
+  SettingsIcon,
+  SunIcon,
+} from 'lucide-react';
 import styles from './styles.module.css';
 import { useEffect, useState } from 'react';
 
@@ -21,6 +27,11 @@ export function Menu() {
       return nextMode;
     });
   }
+
+  const nextModeIcon = {
+    dark: <SunIcon />,
+    light: <MoonIcon />,
+  };
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', mode);
@@ -69,7 +80,7 @@ export function Menu() {
         title='Change mode'
         onClick={handleModeChange}
       >
-        <SunIcon />
+        {nextModeIcon[mode]}
       </a>
     </div>
   );
