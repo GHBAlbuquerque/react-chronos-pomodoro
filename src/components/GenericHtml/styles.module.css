@@ -1,16 +1,22 @@
+.genericHtml {
+  display: flex;
+  flex-direction: column;
+}
+
 .genericHtml h1 {
   font-size: 3.2rem;
-  margin-bottom: 1.6rem;
+  margin: 2.2rem 0;
 }
 
 .genericHtml h2 {
   font-size: 2.4rem;
-  margin-bottom: 1.2rem;
+  margin-bottom: 0.8rem;
+  margin-top: 2.2rem;
 }
 
 .genericHtml h3 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
+  font-size: 2.2rem;
+  margin-bottom: 0.8rem;
 }
 
 .genericHtml p {
@@ -35,8 +41,10 @@
 
 .genericHtml li {
   margin-bottom: 0.8rem;
+  list-style-type: none;
 }
-Add commentMore actions .genericHtml img {
+
+.genericHtml img {
   max-width: 100%;
   height: auto;
   border-radius: 0.8rem;
