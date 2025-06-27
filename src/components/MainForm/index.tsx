@@ -56,6 +56,17 @@ export function MainForm() {
     });
   }
 
+  function handleInterruptTask() {
+    setState(prevState => {
+      return {
+        ...prevState,
+        secondsRemaining: 0,
+        formattedSecondsRemaining: '00:00',
+        activeTask: null,
+      };
+    });
+  }
+
   return (
     <form onSubmit={handleCreateTask} className='form' action=''>
       <div className='formRow'>
@@ -98,6 +109,7 @@ export function MainForm() {
             color='red'
             aria-label='Interrupt task'
             title='Interrupt task'
+            onClick={handleInterruptTask}
           />
         )}
       </div>
