@@ -7,6 +7,7 @@ import type { TaskModel } from '../../models/TaskModel';
 import { useTaskContext } from '../../contexts/TaskContext/useTaskContext';
 import { getNextCycle } from '../../utils/getNextCycle';
 import { getNextCycleType } from '../../utils/getNextCycleType';
+import { formatSecondsToMinutes } from '../../utils/formatSecondsToMinutes';
 
 export function MainForm() {
   const { state, setState } = useTaskContext();
@@ -14,6 +15,9 @@ export function MainForm() {
 
   const nextCycle = getNextCycle(state.currentCycle);
   const nextCycleType = getNextCycleType(nextCycle);
+  const formattedSecondsRemaining = formatSecondsToMinutes(
+    state.secondsRemaining,
+  );
 
   function handleCreateTask(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -44,7 +48,7 @@ export function MainForm() {
         ...prevState, // gets all props from prev state and changes whats is needed in the lines below
         tasks: [...prevState.tasks, newTask],
         secondsRemaining, // if the variable has de same name as the property, value can be passes implicitly
-        formattedSecondsRemaining: '00:00', // ---- TODO ----
+        formattedSecondsRemaining, // ---- TODO ----
         activeTask: newTask,
         currentCycle: nextCycle,
         config: { ...prevState.config },
