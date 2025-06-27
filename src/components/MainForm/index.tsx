@@ -66,6 +66,7 @@ export function MainForm() {
           placeholder='Write a task'
           maxLength={30}
           ref={taskNameInput}
+          disabled={!!state.activeTask}
         />
       </div>
 
