@@ -5,10 +5,13 @@ import { DefaultInput } from '../DefaultInput';
 import { useRef } from 'react';
 import type { TaskModel } from '../../models/TaskModel';
 import { useTaskContext } from '../../contexts/TaskContext/useTaskContext';
+import { getNextCycle } from '../../utils/getNextCycle';
 
 export function MainForm() {
-  const { setState } = useTaskContext();
+  const { state, setState } = useTaskContext();
   const taskNameInput = useRef<HTMLInputElement>(null);
+
+  const nextCycle = getNextCycle(state.currentCycle);
 
   function handleCreateTask(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -25,7 +28,7 @@ export function MainForm() {
     const newTask: TaskModel = {
       id: Date.now().toString(),
       name: taskName,
-      duration: 1, //TODO
+      duration: 1, // ---- TODO ----
       startDate: Date.now(),
       completeDate: null,
       interruptDate: null,
@@ -39,9 +42,9 @@ export function MainForm() {
         ...prevState, //gets all props from prev state
         tasks: [...prevState.tasks, newTask],
         secondsRemaining, // if the variable has de same name as the property, i can pass value implicitly
-        formattedSecondsRemaining: '00:00', //TODO
+        formattedSecondsRemaining: '00:00', // ---- TODO ----
         activeTask: newTask, // changes what is needed
-        currentCycle: 1, // TODO
+        currentCycle: nextCycle,
         config: { ...prevState.config },
       };
     });
