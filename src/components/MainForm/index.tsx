@@ -60,6 +60,12 @@ export function MainForm() {
     setState(prevState => {
       return {
         ...prevState,
+        tasks: prevState.tasks.map(task => {
+          if (prevState.activeTask?.id === task.id) {
+            return { ...task, interruptDate: Date.now() };
+          }
+          return task;
+        }),
         secondsRemaining: 0,
         formattedSecondsRemaining: '00:00',
         activeTask: null,
