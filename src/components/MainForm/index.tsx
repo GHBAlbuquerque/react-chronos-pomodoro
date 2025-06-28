@@ -8,6 +8,7 @@ import { useTaskContext } from '../../contexts/TaskContext/useTaskContext';
 import { getNextCycle } from '../../utils/getNextCycle';
 import { getNextCycleType } from '../../utils/getNextCycleType';
 import { TaskActionTypes } from '../../contexts/TaskContext/taskAction';
+import { Tips } from '../Tips';
 
 export function MainForm() {
   const { state, dispatch } = useTaskContext();
@@ -15,39 +16,6 @@ export function MainForm() {
 
   const nextCycle = getNextCycle(state.currentCycle);
   const nextCycleType = getNextCycleType(nextCycle);
-
-  const messageActiveTask = {
-    workTime: (
-      <span>
-        This cycle lasts {state.config.workTime} minutes. <b>Focus.</b>
-      </span>
-    ),
-    shortBreakTime: (
-      <span>
-        In this cycle you'll rest for {state.config.shortBreakTime} minutes.
-      </span>
-    ),
-    longBreakTime: (
-      <span>
-        <b>Great Work!</b> Now rest for {state.config.longBreakTime} minutes.
-      </span>
-    ),
-  };
-
-  const messageInactiveTask = {
-    workTime: <span>The next cycle is {state.config.workTime} minutes.</span>,
-    shortBreakTime: (
-      <span>
-        <b>Take a break!</b> Rest for {state.config.shortBreakTime} minutes.
-      </span>
-    ),
-    longBreakTime: (
-      <span>
-        <b>Great Work!</b> Soon you'll rest for {state.config.longBreakTime}{' '}
-        minutes.
-      </span>
-    ),
-  };
 
   function handleCreateTask(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -95,8 +63,7 @@ export function MainForm() {
       </div>
 
       <div className='formRow'>
-        {!!state.activeTask && messageActiveTask[state.activeTask?.type]}
-        {!state.activeTask && messageInactiveTask[nextCycleType]}
+        <Tips state={state} nextCycleType={nextCycleType} />
       </div>
 
       {state.currentCycle > 0 && (

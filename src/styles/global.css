@@ -13,6 +13,8 @@ body {
     Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   font-size: 1.6rem; /* 16px */
   color: var(--text-default);
+  min-height: 100vh;
+  height: 100%;
 }
 
 html[data-theme='dark'] {
