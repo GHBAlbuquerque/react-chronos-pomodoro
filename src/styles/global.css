@@ -48,3 +48,13 @@ html[data-theme='light'] {
   justify-content: center;
   gap: 2.4rem;
 }
+
+input:-webkit-autofill,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 0 transparent; /* your background color */
+  box-shadow: 0 0 0 0 transparent;
+  -webkit-text-fill-color: var(--text-default);
+  transition: background-color 5000s ease-in-out 0s;
+}
