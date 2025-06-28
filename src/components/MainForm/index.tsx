@@ -7,17 +7,14 @@ import type { TaskModel } from '../../models/TaskModel';
 import { useTaskContext } from '../../contexts/TaskContext/useTaskContext';
 import { getNextCycle } from '../../utils/getNextCycle';
 import { getNextCycleType } from '../../utils/getNextCycleType';
-import { formatSecondsToMinutes } from '../../utils/formatSecondsToMinutes';
+import { TaskActionTypes } from '../../contexts/TaskContext/taskAction';
 
 export function MainForm() {
-  const { state, setState } = useTaskContext();
+  const { state, dispatch } = useTaskContext();
   const taskNameInput = useRef<HTMLInputElement>(null);
 
   const nextCycle = getNextCycle(state.currentCycle);
   const nextCycleType = getNextCycleType(nextCycle);
-  const formattedSecondsRemaining = formatSecondsToMinutes(
-    state.secondsRemaining,
-  );
 
   function handleCreateTask(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -41,36 +38,31 @@ export function MainForm() {
       type: nextCycleType,
     };
 
-    const secondsRemaining = newTask.duration * 60;
-
-    setState(prevState => {
-      return {
-        ...prevState, // gets all props from prev state and changes whats is needed in the lines below
-        tasks: [...prevState.tasks, newTask],
-        secondsRemaining, // if the variable has de same name as the property, value can be passes implicitly
-        formattedSecondsRemaining, // ---- TODO ----
-        activeTask: newTask,
-        currentCycle: nextCycle,
-        config: { ...prevState.config },
-      };
-    });
+    dispatch({ type: TaskActionTypes.START_TASK, payload: newTask });
   }
 
   function handleInterruptTask() {
-    setState(prevState => {
-      return {
-        ...prevState,
-        tasks: prevState.tasks.map(task => {
-          if (prevState.activeTask?.id === task.id) {
-            return { ...task, interruptDate: Date.now() };
-          }
-          return task;
-        }),
-        secondsRemaining: 0,
-        formattedSecondsRemaining: '00:00',
-        activeTask: null,
-      };
+    if (!state.activeTask) return; // Prevent dispatch if null
+
+    dispatch({
+      type: TaskActionTypes.INTERRUPT_TASK,
+      payload: state.activeTask,
     });
+
+    // setState(prevState => {
+    //   return {
+    //     ...prevState,
+    //     tasks: prevState.tasks.map(task => {
+    //       if (prevState.activeTask?.id === task.id) {
+    //         return { ...task, interruptDate: Date.now() };
+    //       }
+    //       return task;
+    //     }),
+    //     secondsRemaining: 0,
+    //     formattedSecondsRemaining: '00:00',
+    //     activeTask: null,
+    //   };
+    // });
   }
 
   return (
