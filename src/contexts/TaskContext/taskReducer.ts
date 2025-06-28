@@ -10,6 +10,8 @@ export function taskReducer(
   switch (action.type) {
     case TaskActionTypes.START_TASK: {
       const newTask = action.payload;
+      const tasks =
+        state.tasks.length === 8 ? [newTask] : [...state.tasks, newTask];
       const secondsRemaining = newTask.duration * 60;
       const nextCycle = getNextCycle(state.currentCycle);
       const formattedSecondsRemaining = formatSecondsToMinutes(
@@ -18,7 +20,7 @@ export function taskReducer(
 
       return {
         ...state,
-        tasks: [...state.tasks, newTask],
+        tasks,
         secondsRemaining,
         formattedSecondsRemaining, // ---- TODO ----
         activeTask: newTask,
