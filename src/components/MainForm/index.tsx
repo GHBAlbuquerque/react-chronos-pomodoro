@@ -42,27 +42,9 @@ export function MainForm() {
   }
 
   function handleInterruptTask() {
-    if (!state.activeTask) return; // Prevent dispatch if null
-
     dispatch({
       type: TaskActionTypes.INTERRUPT_TASK,
-      payload: state.activeTask,
     });
-
-    // setState(prevState => {
-    //   return {
-    //     ...prevState,
-    //     tasks: prevState.tasks.map(task => {
-    //       if (prevState.activeTask?.id === task.id) {
-    //         return { ...task, interruptDate: Date.now() };
-    //       }
-    //       return task;
-    //     }),
-    //     secondsRemaining: 0,
-    //     formattedSecondsRemaining: '00:00',
-    //     activeTask: null,
-    //   };
-    // });
   }
 
   return (
