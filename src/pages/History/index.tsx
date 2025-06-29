@@ -12,8 +12,9 @@ import { formatDate } from '../../utils/formatDate';
 import { getTaskStatus } from '../../utils/getTaskStatus';
 import { sortTasks, type SortTasksOptions } from '../../utils/sortTasks';
 import { TaskActionTypes } from '../../contexts/TaskContext/taskAction';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { showConfirmationBox } from '../../adapters/showConfirmationBox';
+import { showMessage } from '../../adapters/showMessage';
 
 export function History() {
   const { state, dispatch } = useTaskContext();
@@ -57,6 +58,12 @@ export function History() {
       },
     );
   }
+
+  useEffect(() => {
+    return () => {
+      showMessage.dismiss();
+    };
+  }, []);
 
   return (
     <MainTemplate>
