@@ -8,9 +8,16 @@ import styles from './styles.module.css';
 import { useTaskContext } from '../../contexts/TaskContext/useTaskContext';
 import { RouterLink } from '../../components/RouterLink';
 import { GenericHtml } from '../../components/GenericHtml';
+import { formatDate } from '../../utils/formatDate';
+import { getTaskStatus } from '../../utils/getTaskStatus';
 
 export function History() {
   const { state } = useTaskContext();
+  const taskTypeDictionary = {
+    workTime: 'Focus',
+    shortBreakTime: 'Short Break',
+    longBreakTime: 'Long Break',
+  };
 
   return (
     <MainTemplate>
@@ -59,11 +66,11 @@ export function History() {
                     <tr key={task.id}>
                       <td>{task.name}</td>
                       <td>{task.duration} minute(s)</td>
-                      <td>{new Date(task.startDate).toISOString()}</td>
-                      <td>Completa</td>
-                      <td>Foco</td>
+                      <td>{formatDate(task.startDate)}</td>
+                      <td>{getTaskStatus(task, state.activeTask)}</td>
+                      <td>{taskTypeDictionary[task.type]}</td>
                     </tr>
-                  ); //---TODO----
+                  );
                 })}
               </tbody>
             </table>
