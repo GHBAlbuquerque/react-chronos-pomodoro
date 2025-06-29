@@ -10,6 +10,7 @@ import { RouterLink } from '../../components/RouterLink';
 import { GenericHtml } from '../../components/GenericHtml';
 import { formatDate } from '../../utils/formatDate';
 import { getTaskStatus } from '../../utils/getTaskStatus';
+import { sortTasks } from '../../utils/sortTasks';
 
 export function History() {
   const { state } = useTaskContext();
@@ -18,9 +19,7 @@ export function History() {
     shortBreakTime: 'Short Break',
     longBreakTime: 'Long Break',
   };
-  const sortedTasks = [...state.tasks].sort((a, b) => {
-    return b.startDate - a.startDate;
-  });
+  const sortedTasks = sortTasks({ tasks: state.tasks });
 
   return (
     <MainTemplate>
