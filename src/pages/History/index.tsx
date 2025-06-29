@@ -10,7 +10,8 @@ import { RouterLink } from '../../components/RouterLink';
 import { GenericHtml } from '../../components/GenericHtml';
 import { formatDate } from '../../utils/formatDate';
 import { getTaskStatus } from '../../utils/getTaskStatus';
-import { sortTasks } from '../../utils/sortTasks';
+import { sortTasks, type SortTasksOptions } from '../../utils/sortTasks';
+import { useState } from 'react';
 
 export function History() {
   const { state } = useTaskContext();
@@ -19,7 +20,29 @@ export function History() {
     shortBreakTime: 'Short Break',
     longBreakTime: 'Long Break',
   };
-  const sortedTasks = sortTasks({ tasks: state.tasks });
+  const [sortTasksOptions, setSortTasksOptions] = useState<SortTasksOptions>(
+    () => {
+      return {
+        tasks: sortTasks({ tasks: state.tasks }),
+        field: 'startDate',
+        direction: 'desc',
+      };
+    },
+  );
+
+  function handleTasksSorting({ field }: Pick<SortTasksOptions, 'field'>) {
+    const newDirection = sortTasksOptions.direction === 'desc' ? 'asc' : 'desc';
+
+    setSortTasksOptions({
+      tasks: sortTasks({
+        tasks: sortTasksOptions.tasks,
+        field: field,
+        direction: newDirection,
+      }),
+      field: field,
+      direction: newDirection,
+    });
+  }
 
   return (
     <MainTemplate>
@@ -55,15 +78,30 @@ export function History() {
             <table>
               <thead>
                 <tr>
-                  <th>Tarefa</th>
-                  <th>Duração</th>
-                  <th>Data</th>
+                  <th
+                    className={styles.thSort}
+                    onClick={() => handleTasksSorting({ field: 'name' })}
+                  >
+                    Task ↕
+                  </th>
+                  <th
+                    className={styles.thSort}
+                    onClick={() => handleTasksSorting({ field: 'duration' })}
+                  >
+                    Duration ↕
+                  </th>
+                  <th
+                    className={styles.thSort}
+                    onClick={() => handleTasksSorting({ field: 'startDate' })}
+                  >
+                    Date ↕
+                  </th>
                   <th>Status</th>
-                  <th>Tipo</th>
+                  <th>Type</th>
                 </tr>
               </thead>
               <tbody>
-                {sortedTasks.map(task => {
+                {sortTasksOptions.tasks.map(task => {
                   return (
                     <tr key={task.id}>
                       <td>{task.name}</td>
