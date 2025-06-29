@@ -1,5 +1,5 @@
 import { TrashIcon } from 'lucide-react';
-import { DefaultButton } from '../../components/Button';
+import { DefaultButton } from '../../components/DefaultButton';
 import { Container } from '../../components/Container';
 import { Heading } from '../../components/Heading';
 import { MainTemplate } from '../../templates/MainTemplate';
@@ -13,6 +13,7 @@ import { getTaskStatus } from '../../utils/getTaskStatus';
 import { sortTasks, type SortTasksOptions } from '../../utils/sortTasks';
 import { TaskActionTypes } from '../../contexts/TaskContext/taskAction';
 import { useState } from 'react';
+import { showConfirmationBox } from '../../adapters/showConfirmationBox';
 
 export function History() {
   const { state, dispatch } = useTaskContext();
@@ -47,10 +48,14 @@ export function History() {
   }
 
   function handleResetHistory() {
-    if (!confirm('Are you sure you want to erase task history completely?'))
-      return;
-
-    dispatch({ type: TaskActionTypes.RESET_STATE });
+    showConfirmationBox(
+      'Are you sure you want to erase task history completely?',
+      confirmation => {
+        if (confirmation) {
+          dispatch({ type: TaskActionTypes.RESET_STATE });
+        }
+      },
+    );
   }
 
   return (

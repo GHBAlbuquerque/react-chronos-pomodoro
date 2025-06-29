@@ -1,5 +1,5 @@
 import { PlayCircleIcon, StopCircleIcon } from 'lucide-react';
-import { DefaultButton } from '../Button';
+import { DefaultButton } from '../DefaultButton';
 import { Cycles } from '../Cycles';
 import { DefaultInput } from '../DefaultInput';
 import { useRef } from 'react';
