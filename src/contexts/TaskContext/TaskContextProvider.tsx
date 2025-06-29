@@ -43,6 +43,8 @@ export function TaskContextProvider({ children }: TaskContentProviderProps) {
       console.log('Worker stopped because there is no active task.');
     }
 
+    document.title = `${state.formattedSecondsRemaining} - Chronos Pomodoro`;
+
     worker.postMessage(state);
   }, [state, worker]);
 
