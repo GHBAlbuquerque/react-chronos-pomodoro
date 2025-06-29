@@ -21,6 +21,7 @@ export function History() {
     shortBreakTime: 'Short Break',
     longBreakTime: 'Long Break',
   };
+  const hasTasks = state.tasks.length > 0;
   const [sortTasksOptions, setSortTasksOptions] = useState<SortTasksOptions>(
     () => {
       return {
@@ -57,20 +58,22 @@ export function History() {
       <Container>
         <Heading>
           <span>History</span>
-          <span className={styles.buttonContainer}>
-            <DefaultButton
-              icon={<TrashIcon />}
-              color='red'
-              aria-label='Purge history'
-              title='Purge history'
-              onClick={handleResetHistory}
-            />
-          </span>
+          {hasTasks && (
+            <span className={styles.buttonContainer}>
+              <DefaultButton
+                icon={<TrashIcon />}
+                color='red'
+                aria-label='Purge history'
+                title='Purge history'
+                onClick={handleResetHistory}
+              />
+            </span>
+          )}
         </Heading>
       </Container>
 
       <Container>
-        {state.tasks.length == 0 && (
+        {!hasTasks && (
           <GenericHtml>
             <span>Nothing to show here. </span>
             <span>
@@ -82,7 +85,7 @@ export function History() {
           </GenericHtml>
         )}
 
-        {state.tasks.length != 0 && (
+        {hasTasks && (
           <div className={styles.responsiveTable}>
             <table>
               <thead>
