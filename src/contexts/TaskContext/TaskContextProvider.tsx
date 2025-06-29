@@ -5,6 +5,7 @@ import { taskReducer } from './taskReducer';
 import { TimerWorkerManager } from '../../workers/TimerWokerManager';
 import { TaskActionTypes } from './taskAction';
 import { loadBeep } from '../../utils/loadBeep';
+import type { TaskStateModel } from '../../models/TaskStateModel';
 
 // Context Provider & Props
 
@@ -13,7 +14,19 @@ type TaskContentProviderProps = {
 };
 
 export function TaskContextProvider({ children }: TaskContentProviderProps) {
-  const [state, dispatch] = useReducer(taskReducer, initialTaskState);
+  const [state, dispatch] = useReducer(taskReducer, initialTaskState, () => {
+    const storageState = localStorage.getItem('state');
+
+    if (!storageState) return initialTaskState;
+    const parsedState: TaskStateModel = JSON.parse(storageState);
+
+    return {
+      ...parsedState,
+      activeTask: null,
+      secondsRemaining: 0,
+      formattedSecondsRemaining: '00:00',
+    };
+  });
   const worker = TimerWorkerManager.getInstance();
   const playBeepRef = useRef<() => void | null>(null);
 
@@ -38,6 +51,8 @@ export function TaskContextProvider({ children }: TaskContentProviderProps) {
   });
 
   useEffect(() => {
+    localStorage.setItem('state', JSON.stringify(state));
+
     if (!state.activeTask) {
       worker.terminate();
       console.log('Worker stopped because there is no active task.');
