@@ -11,10 +11,11 @@ import { GenericHtml } from '../../components/GenericHtml';
 import { formatDate } from '../../utils/formatDate';
 import { getTaskStatus } from '../../utils/getTaskStatus';
 import { sortTasks, type SortTasksOptions } from '../../utils/sortTasks';
+import { TaskActionTypes } from '../../contexts/TaskContext/taskAction';
 import { useState } from 'react';
 
 export function History() {
-  const { state } = useTaskContext();
+  const { state, dispatch } = useTaskContext();
   const taskTypeDictionary = {
     workTime: 'Focus',
     shortBreakTime: 'Short Break',
@@ -44,6 +45,13 @@ export function History() {
     });
   }
 
+  function handleResetHistory() {
+    if (!confirm('Are you sure you want to erase task history completely?'))
+      return;
+
+    dispatch({ type: TaskActionTypes.RESET_STATE });
+  }
+
   return (
     <MainTemplate>
       <Container>
@@ -55,6 +63,7 @@ export function History() {
               color='red'
               aria-label='Purge history'
               title='Purge history'
+              onClick={handleResetHistory}
             />
           </span>
         </Heading>
