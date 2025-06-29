@@ -18,6 +18,9 @@ export function History() {
     shortBreakTime: 'Short Break',
     longBreakTime: 'Long Break',
   };
+  const sortedTasks = [...state.tasks].sort((a, b) => {
+    return b.startDate - a.startDate;
+  });
 
   return (
     <MainTemplate>
@@ -61,7 +64,7 @@ export function History() {
                 </tr>
               </thead>
               <tbody>
-                {state.tasks.map(task => {
+                {sortedTasks.map(task => {
                   return (
                     <tr key={task.id}>
                       <td>{task.name}</td>
