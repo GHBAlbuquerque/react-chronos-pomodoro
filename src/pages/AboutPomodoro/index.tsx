@@ -1,6 +1,7 @@
 import { Container } from '../../components/Container';
 import { GenericHtml } from '../../components/GenericHtml';
 import { Heading } from '../../components/Heading';
+import { RouterLink } from '../../components/RouterLink';
 import { MainTemplate } from '../../templates/MainTemplate';
 
 export function AboutPomodoro() {
@@ -46,8 +47,9 @@ export function AboutPomodoro() {
           <h3>⚙️ Time customization</h3>
           <p>
             You can set the focus time, short break, and long break however you
-            want! Just go to the <a href='/settings'>settings page</a> and
-            adjust the minutes as you prefer.
+            want! Just go to the{' '}
+            <RouterLink href='/settings'>settings page</RouterLink> and adjust
+            the minutes as you prefer.
           </p>
 
           <h3>🔁 Organized cycles in sequence</h3>
@@ -91,8 +93,9 @@ export function AboutPomodoro() {
           <h3>📊 Automatic history</h3>
           <p>
             All your tasks and completed cycles are saved in the{' '}
-            <a href='/history'>history</a>, with statuses of completed or
-            interrupted. This way, you can track your progress over time.
+            <RouterLink href='/history'>history</RouterLink>, with statuses of
+            completed or interrupted. This way, you can track your progress over
+            time.
           </p>
 
           <h2>Why use Chronos Pomodoro?</h2>
@@ -105,8 +108,8 @@ export function AboutPomodoro() {
 
           <p>
             <strong>Ready to focus?</strong> Let's{' '}
-            <a href='/'>go back to the homepage</a> and start your Pomodoros!
-            🍅🚀
+            <RouterLink href='/'>go back to the homepage</RouterLink> and start
+            your Pomodoros! 🍅🚀
           </p>
 
           <p>
