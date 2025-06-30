@@ -5,6 +5,12 @@ Chronos Pomodoro is a minimalist Pomodoro timer application built with
 It helps you manage your focus sessions and breaks using the Pomodoro Technique,
 with a clean and modern interface.
 
+### This project has been deployed on Vercel!
+
+To see it, check this [link](https://react-chronos-pomodoro.vercel.app/)
+
+### Screenshot
+
 ![screenshot](./misc/screen.png)
 
 ## ✨ Features
