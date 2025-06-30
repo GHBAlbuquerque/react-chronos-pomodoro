@@ -5,6 +5,8 @@ Chronos Pomodoro is a minimalist Pomodoro timer application built with
 It helps you manage your focus sessions and breaks using the Pomodoro Technique,
 with a clean and modern interface.
 
+![screenshot](./misc/screen.png)
+
 ## ✨ Features
 
 - Start, pause, and reset Pomodoro cycles
@@ -41,4 +43,5 @@ Feel free to customize and expand this project to fit your productivity needs!
 
 📅 Done in 2025
 
+Project by [@luizomf](https://github.com/luizomf) Done by
 [@GHBAlbuquerque](https://github.com/GHBAlbuquerque)
