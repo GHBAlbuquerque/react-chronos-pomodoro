@@ -9,30 +9,31 @@ export function Tips({ state, nextCycleType }: TipsProps) {
   const messageActiveTask = {
     workTime: (
       <span>
-        This cycle lasts {state.config.workTime} minutes. <b>Focus.</b>
+        This cycle lasts {state.config.workTime} minute(s). <b>Focus.</b>
       </span>
     ),
     shortBreakTime: (
       <span>
-        <b>Take a break!</b> Rest for {state.config.shortBreakTime} minutes.
+        <b>Take a break!</b> Rest for {state.config.shortBreakTime} minute(s).
       </span>
     ),
     longBreakTime: (
       <span>
-        <b>Great Work!</b> Now rest for {state.config.longBreakTime} minutes.
+        <b>Great Work!</b> Now rest for {state.config.longBreakTime} minute(s).
       </span>
     ),
   };
 
   const messageInactiveTask = {
-    workTime: <span>The next cycle is {state.config.workTime} minutes.</span>,
+    workTime: <span>The next cycle is {state.config.workTime} minute(s).</span>,
     shortBreakTime: (
       <span>
-        In the next cycle you'll rest for {state.config.shortBreakTime} minutes.
+        In the next cycle you'll rest for {state.config.shortBreakTime}{' '}
+        minute(s).
       </span>
     ),
     longBreakTime: (
-      <span>Soon you'll rest for {state.config.longBreakTime} minutes.</span>
+      <span>Soon you'll rest for {state.config.longBreakTime} minute(s).</span>
     ),
   };
 

@@ -1,5 +1,5 @@
 import { PlayCircleIcon, StopCircleIcon } from 'lucide-react';
-import { DefaultButton } from '../Button';
+import { DefaultButton } from '../DefaultButton';
 import { Cycles } from '../Cycles';
 import { DefaultInput } from '../DefaultInput';
 import { useRef } from 'react';
@@ -14,6 +14,7 @@ import { showMessage } from '../../adapters/showMessage';
 export function MainForm() {
   const { state, dispatch } = useTaskContext();
   const taskNameInput = useRef<HTMLInputElement>(null);
+  const lastTaskName = state.tasks[state.tasks.length - 1]?.name || '';
 
   const nextCycle = getNextCycle(state.currentCycle);
   const nextCycleType = getNextCycleType(nextCycle);
@@ -64,6 +65,7 @@ export function MainForm() {
           maxLength={30}
           ref={taskNameInput}
           disabled={!!state.activeTask}
+          defaultValue={lastTaskName}
         />
       </div>
 

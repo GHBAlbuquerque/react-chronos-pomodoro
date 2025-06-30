@@ -7,6 +7,7 @@ import {
 } from 'lucide-react';
 import styles from './styles.module.css';
 import { useEffect, useState } from 'react';
+import { RouterLink } from '../RouterLink';
 
 type AvailableModes = 'dark' | 'light';
 
@@ -46,42 +47,42 @@ export function Menu() {
 
   return (
     <div className={styles.menu}>
-      <a
-        href='#'
+      <RouterLink
+        href='/'
         className={styles.menuLink}
         aria-label='Homepage'
         title='Homepage'
       >
         <HouseIcon />
-      </a>
+      </RouterLink>
 
-      <a
-        href='#'
+      <RouterLink
+        href='/history'
         className={styles.menuLink}
         aria-label='History'
         title='History'
       >
         <HistoryIcon />
-      </a>
+      </RouterLink>
 
-      <a
-        href='#'
+      <RouterLink
+        href='/settings'
         className={styles.menuLink}
         aria-label='Settings'
         title='Settings'
       >
         <SettingsIcon />
-      </a>
+      </RouterLink>
 
-      <a
-        href='#'
+      <RouterLink
+        href='/'
         className={styles.menuLink}
         aria-label='Change mode'
         title='Change mode'
         onClick={handleModeChange}
       >
         {nextModeIcon[mode]}
-      </a>
+      </RouterLink>
     </div>
   );
 }
