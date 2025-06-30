@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Container } from '../../components/Container';
 import { GenericHtml } from '../../components/GenericHtml';
 import { Heading } from '../../components/Heading';
@@ -5,6 +6,10 @@ import { RouterLink } from '../../components/RouterLink';
 import { MainTemplate } from '../../templates/MainTemplate';
 
 export function AboutPomodoro() {
+  useEffect(() => {
+    document.title = 'Understand Pomodoro Technique - Chronos Pomodoro';
+  }, []);
+
   return (
     <MainTemplate>
       <Container>
@@ -18,7 +23,10 @@ export function AboutPomodoro() {
             breaks. The goal is to maintain total focus for a short period and
             ensure breaks to avoid mental fatigue.
           </p>
-          <img src='https://placehold.co/1920x1080' alt='' />
+          <img
+            src='https://media.sketchfab.com/models/6e9393c96b7445709db9f7b3d1e396e2/thumbnails/bada2bbc6c9f4db791259a67a0162aaf/9bcacbcd11d34321bdc87cde073773e4.jpeg'
+            alt=''
+          />
 
           <h2>How does the traditional Pomodoro work?</h2>
           <ul>

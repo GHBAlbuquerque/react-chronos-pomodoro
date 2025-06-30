@@ -17,6 +17,10 @@ import { showConfirmationBox } from '../../adapters/showConfirmationBox';
 import { showMessage } from '../../adapters/showMessage';
 
 export function History() {
+  useEffect(() => {
+    document.title = 'History - Chronos Pomodoro';
+  }, []);
+
   const { state, dispatch } = useTaskContext();
   const taskTypeDictionary = {
     workTime: 'Focus',

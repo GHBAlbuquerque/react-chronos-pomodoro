@@ -5,11 +5,15 @@ import { DefaultInput } from '../../components/DefaultInput';
 import { Heading } from '../../components/Heading';
 import { MainTemplate } from '../../templates/MainTemplate';
 import { useTaskContext } from '../../contexts/TaskContext/useTaskContext';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { showMessage } from '../../adapters/showMessage';
 import { TaskActionTypes } from '../../contexts/TaskContext/taskAction';
 
 export function Settings() {
+  useEffect(() => {
+    document.title = 'Settings - Chronos Pomodoro';
+  }, []);
+
   const { state, dispatch } = useTaskContext();
   const workTimeInputRef = useRef<HTMLInputElement>(null);
   const shortBreakTimeInputRef = useRef<HTMLInputElement>(null);
