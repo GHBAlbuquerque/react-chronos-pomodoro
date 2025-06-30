@@ -23,7 +23,7 @@ export function taskReducer(
         ...state,
         tasks,
         secondsRemaining,
-        formattedSecondsRemaining, // ---- TODO ----
+        formattedSecondsRemaining,
         activeTask: newTask,
         currentCycle: nextCycle,
         config: { ...state.config },
@@ -71,6 +71,13 @@ export function taskReducer(
         secondsRemaining: 0,
         formattedSecondsRemaining: '00:00',
         activeTask: null,
+      };
+    }
+
+    case TaskActionTypes.CHANGE_SETTINGS: {
+      return {
+        ...state,
+        config: { ...action.payload },
       };
     }
   }

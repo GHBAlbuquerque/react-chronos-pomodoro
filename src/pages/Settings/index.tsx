@@ -7,45 +7,54 @@ import { MainTemplate } from '../../templates/MainTemplate';
 import { useTaskContext } from '../../contexts/TaskContext/useTaskContext';
 import { useRef } from 'react';
 import { showMessage } from '../../adapters/showMessage';
+import { TaskActionTypes } from '../../contexts/TaskContext/taskAction';
 
 export function Settings() {
   const { state, dispatch } = useTaskContext();
   const workTimeInputRef = useRef<HTMLInputElement>(null);
-  const shortRestTimeInputRef = useRef<HTMLInputElement>(null);
-  const longRestTimeInputRef = useRef<HTMLInputElement>(null);
+  const shortBreakTimeInputRef = useRef<HTMLInputElement>(null);
+  const longBreakTimeInputRef = useRef<HTMLInputElement>(null);
 
   const formErrors: string[] = [];
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    const workTimeValue = Number(workTimeInputRef.current?.value);
-    const shortRestTimeValue = Number(shortRestTimeInputRef.current?.value);
-    const longRestTimeValue = Number(longRestTimeInputRef.current?.value);
+    const workTime = Number(workTimeInputRef.current?.value);
+    const shortBreakTime = Number(shortBreakTimeInputRef.current?.value);
+    const longBreakTime = Number(longBreakTimeInputRef.current?.value);
 
-    if (
-      isNaN(workTimeValue) ||
-      isNaN(shortRestTimeValue) ||
-      isNaN(longRestTimeValue)
-    ) {
+    if (isNaN(workTime) || isNaN(shortBreakTime) || isNaN(longBreakTime)) {
       formErrors.push('Please use only numbers.');
     }
 
-    if (workTimeValue < 1 || workTimeValue > 60) {
+    if (workTime < 1 || workTime > 60) {
       formErrors.push('Use values between 1 and 60 for focus');
     }
 
-    if (shortRestTimeValue < 1 || shortRestTimeValue > 15) {
+    if (shortBreakTime < 1 || shortBreakTime > 15) {
       formErrors.push('Use values between 1 and 15 for short rest');
-
-      if (longRestTimeValue < 1 || longRestTimeValue > 30) {
-        formErrors.push('Use values between 1 and 30 for long rest');
-      }
-
-      if (formErrors.length > 0) {
-        formErrors.forEach(error => showMessage.error(error));
-      }
     }
+
+    if (longBreakTime < 1 || longBreakTime > 30) {
+      formErrors.push('Use values between 1 and 30 for long rest');
+    }
+
+    if (formErrors.length > 0) {
+      formErrors.forEach(error => showMessage.error(error));
+      return;
+    }
+
+    dispatch({
+      type: TaskActionTypes.CHANGE_SETTINGS,
+      payload: {
+        workTime,
+        shortBreakTime,
+        longBreakTime,
+      },
+    });
+
+    showMessage.success('Settings saved');
   }
 
   return (
@@ -75,7 +84,7 @@ export function Settings() {
             <DefaultInput
               id='shortBreakTime'
               labelText='Short break'
-              ref={shortRestTimeInputRef}
+              ref={shortBreakTimeInputRef}
               defaultValue={state.config.shortBreakTime}
               type='number'
             ></DefaultInput>
@@ -84,7 +93,7 @@ export function Settings() {
             <DefaultInput
               id='longBreakTime'
               labelText='Long break'
-              ref={longRestTimeInputRef}
+              ref={longBreakTimeInputRef}
               defaultValue={state.config.longBreakTime}
               type='number'
             ></DefaultInput>
