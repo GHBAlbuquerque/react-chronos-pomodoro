@@ -43,5 +43,5 @@ Feel free to customize and expand this project to fit your productivity needs!
 
 📅 Done in 2025
 
-Project by [@luizomf](https://github.com/luizomf) Done by
-[@GHBAlbuquerque](https://github.com/GHBAlbuquerque)
+> Project by [@luizomf](https://github.com/luizomf) Done by
+> [@GHBAlbuquerque](https://github.com/GHBAlbuquerque)
