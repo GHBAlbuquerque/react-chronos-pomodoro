@@ -64,7 +64,7 @@ export function Settings() {
   return (
     <MainTemplate>
       <Container>
-        <Heading>Configurações</Heading>
+        <Heading>Settings</Heading>
       </Container>
 
       <Container>
